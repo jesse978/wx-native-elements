@@ -1,0 +1,46 @@
+.qt-btn {
+  box-sizing: border-box;
+  transition: all 0.3s;
+  height: 90rpx;
+  width: 696rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  line-height: 90rpx;
+  font-size: 34rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  display: inline-block;
+}
+.hollow {
+  background-color: transparent;
+  color: #007de2;
+  border: 1px solid#007DE2;
+}
+.primary {
+  background-color: #007de2;
+  color: #fff;
+  border: 1px solid#007DE2;
+}
+.info {
+  background-color: #f1f1f1;
+  color: #5a5a5a;
+  border: 1px solid#F1F1F1;
+}
+.danger {
+  background-color: #e25f5f;
+  color: #fff;
+  border: 1px solid#E25F5F;
+}
+.disabled {
+  background: rgba(124, 137, 153, 0.37) !important;
+  color: #fff !important;
+  border: none !important;
+}
+.qt-hover-hollow-class {
+  transition: all 0.3s;
+  background-color: #94d4ff !important;
+  color: #fff !important;
+}
+.qt-hover-class {
+  opacity: 0.7;
+}

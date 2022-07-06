@@ -1,0 +1,10 @@
+<switch wx:if="{{type=='switch'}}" class="switch" checked="{{slotParam?true:false}}" color="#017AFD"
+  bindchange="switchChange" />
+<view wx:elif="{{type=='button'}}" class="button">
+  <view class="btn {{slotParam?'btn-active':''}}" bindtap="switchChange" data-state="{{1}}">主体</view>
+  <view class="btn {{!slotParam?'btn-active':''}}" bindtap="switchChange" data-state="{{0}}">非主体</view>
+</view>
+<view wx:elif="{{type=='weight'}}" class="weight">
+  <input type="number" placeholder='请输入权重' value="{{slotParam}}" class="weight-input" bindblur="switchChange"/>%
+  <text class="iconfont icon-edit"></text>
+</view>

@@ -1,0 +1,82 @@
+@import "/assets/style/public_icon.wxss";
+
+.message_item {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.lf_box {
+  position: relative;
+  width: 26%;
+  padding: 24rpx 10rpx 50rpx 40rpx;
+  border-right: #F0F0F0 2rpx solid;
+}
+
+.icon-round {
+  position: absolute;
+  right: -16rpx;
+  top: 33%;
+  font-size: 30rpx;
+  color: #41A7FF;
+}
+
+.lf_box .date {
+  font-size: 24rpx;
+  color: #969696;
+  margin-bottom: 10rpx;
+}
+
+.lf_box .time {
+  color: #253750;
+  font-size: 28rpx;
+}
+
+.rt_box {
+  margin: 0 5%;
+  width: 67%;
+  padding: 42rpx 0 24rpx 0;
+  border-bottom: #EEEEEE 2rpx solid;
+}
+
+.rt_box .title {
+  position: relative;
+  font-size: 28rpx;
+  color: #333333;
+  margin-bottom: 10rpx;
+}
+.title .label{
+  width: 95%;
+}
+.rt_box .detail {
+  color: #999999;
+  font-size: 24rpx;
+}
+
+.title .icon-rh_arrows {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #969696;
+}
+
+.title .state {
+  margin-left: 15rpx;
+  font-size: 24rpx;
+}
+
+.title .info {
+  color: #409EFF;
+}
+
+.title .success {
+  color: #67C23A;
+}
+
+.title .error {
+  color: #F56C6C;
+}
+
+.title .warning{
+  color: #E6A23C;
+}

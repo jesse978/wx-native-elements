@@ -1,0 +1,6 @@
+<!-- components/qt-check-box/qt-check-box.wxml -->
+<view class="check_box" style="width:{{size}}rpx;height:{{size}}rpx;" bind:tap="changeChecked" data-checked="{{checked}}">
+  <view wx:if="{{checked}}" class="iconfont icon-checked_hollow checked" style="font-size:{{size}}rpx" color="{{disable?'#F5F6F7':'#41A7FF'}}"></view>
+  <!-- <view wx:if="{{!checked}}" class="circle {{disable&&'gray'}}"></view> -->
+</view>
+

@@ -1,0 +1,15 @@
+<!-- components/off-line-msg/off-line-msg.wxml -->
+<view class="mask {{ isShow ? 'show' : '' }}" bindtap="hidden" catchtouchmove="stopCatchTouch">
+  <view class="off_line" catch:tap="stopCatchTouch">
+    <image wx:if="{{logo}}" class="logo" src="{{imgRoot}}/devices/{{logo}}.png" mode="aspectFit" lazy-load="false"></image>
+    <view class="title">设备已离线</view>
+    <view class="detail">
+      <view>请检查：</view>
+      <view>1、设备是否有电</view>
+      <view>2、设备连接的网关是否工作正常</view>
+      <!-- <view>3、</view> -->
+    </view>
+    <view class="bottom_label" catch:tap="viewDetail">查看详情</view>
+    <view class="btn" catch:tap="gotoHome">返回</view>
+  </view>
+</view>

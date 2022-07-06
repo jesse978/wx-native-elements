@@ -1,0 +1,29 @@
+.comp-button {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  z-index: 100;
+  background: #fff;
+  justify-content: space-between;
+  column-gap: 16rpx;
+  padding: 10rpx 28rpx 70rpx 28rpx;
+}
+
+.comp-button view {
+  flex: 1;
+  text-align: center;
+  height: 85rpx;
+  line-height: 85rpx;
+  background: rgba(230, 230, 230, 0.39);
+  border-radius: 10rpx;
+  font-size: 32rpx;
+  font-weight: 400;
+  color: #5A5A5A;
+}
+
+.comp-button .comp-confirm {
+  color: #fff;
+  background: #007DE2;
+}

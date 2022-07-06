@@ -1,0 +1,90 @@
+/* components/model-installer/model-installer.wxss */
+@import "/assets/style/public_icon.wxss";
+@import "/app.wxss";
+.installer-box {
+  position: relative;
+  width: 562rpx;
+  height: 598rpx;
+  background: #ffffff;
+  border-radius: 30rpx;
+}
+
+.installer-head {
+  padding: 0 30rpx;
+  height: 92rpx;
+  line-height: 92rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.5rpx solid #c5c5c5;
+}
+
+.installer-head .divider-line {
+  margin: 0 24rpx 0 17rpx;
+  display: inline-block;
+  width: 9rpx;
+  height: 27rpx;
+  background: #017afd;
+  border-radius: 2rpx;
+}
+
+.installer-head .iconfont {
+  width: 45rpx;
+  height: 45rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #a4a4a4;
+  font-size: 44rpx;
+}
+
+.installer-list {
+  padding-top: 16rpx;
+  height: 400rpx;
+  overflow: auto;
+}
+
+.installer-list .installer-item {
+  padding: 24rpx 60rpx 24rpx 60rpx;
+  display: flex;
+  align-items: center;
+}
+
+.installer-name {
+  flex: 1;
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 45rpx;
+  color: #646464;
+}
+
+.installer-btn {
+  padding: 0 36rpx;
+  border-top: 1px solid #c5c5c5;
+  height: 110rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.installer-btn .btn-item {
+  margin-right: 24rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 151rpx;
+  height: 61rpx;
+  background: #e1e1e1;
+  border-radius: 8rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  line-height: 42rpx;
+  color: #9f9f9f;
+}
+
+.btn-item.save{
+  background-color: #4093FF;
+  color: #ffffff;
+}

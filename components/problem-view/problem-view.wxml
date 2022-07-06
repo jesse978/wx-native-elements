@@ -1,0 +1,141 @@
+<!-- components/problem-list/problem-list.wxml -->
+<view class="problem-view">
+  <view class="problem-head">
+    <view class="filter-box">
+      <view class="filter-title">
+        <block>
+          <view class="filter-item" bind:tap="changeBuildingModel" data-type='block'>
+            <text wx:if="{{checkedBuilding.remark !== ''}}">{{checkedBuilding.name}}栋</text>
+            <text wx:else>楼栋</text>
+            <text class="iconfont icon-right_fill"></text>
+          </view>
+          <view class="filter-item floor-filter" bind:tap="changeFloorModel" data-type='block'>
+            <text wx:if="{{checkedFloor.remark !== -1}}">{{checkedFloor.name}}层</text>
+            <text wx:else>楼层</text>
+            <text class="iconfont icon-right_fill"></text>
+          </view>
+          <view class="filter-item floor-filter" bind:tap="changeProductModel" data-type='block'>
+            <text wx:if="{{checkedProduct.remark !== -1}}">{{checkedProduct.name}}</text>
+            <text wx:else>产品</text>
+            <!-- <text>{{checkedProduct.name}}</text> -->
+            <text class="iconfont icon-right_fill"></text>
+          </view>
+          <view class="filter-item floor-filter" bind:tap="changeTypeModel">
+            <text wx:if="{{checkedProblemType.remark !== -1}}">{{checkedProblemType.name}}</text>
+            <text wx:else>类型</text>
+            <text class="iconfont icon-right_fill"></text>
+          </view>
+        </block>
+      </view>
+      <view class="filter-item filter-rh">
+        <text bind:tap="showFilter" class="{{filterClass ? 'filter-checked' :''}}">
+          <text class="iconfont icon-filter"></text>
+          <text>筛选</text>
+        </text>
+      </view>
+    </view>
+    <view class="total-box">
+      <text class="total-label">
+        <block wx:if="{{!viewType}}">问题总数：{{total}}</block>
+        <block wx:else>
+          <text>问题总数：{{roomExtra.problems}}</text>
+          <text style="display: inline-block;margin-left:50rpx">房间总数：{{roomExtra.rooms}}</text>
+        </block>
+        <text>{{filterStr}}</text>
+      </text>
+      <view wx:if="{{isShowAll}}" class="filter-item" bind:tap="changeIsShow" data-type='other'>
+        <text>取消</text>
+      </view>
+      <view wx:else class="switch-view" bind:tap="changeviewType">
+        <text class="iconfont icon-switch fixed-switch"></text>
+        <text>{{viewType?'列表':'房号'}}视图</text>
+      </view>
+    </view>
+  </view>
+  <scroll-view class="problem-box" scroll-y bindscrolltolower="dataLoad" lower-threshold='220' bindrefresherrefresh="refreshData" refresher-triggered='{{isRefresh}}' refresher-enabled show-scrollbar='{{false}}'>
+    <block wx:if="{{!viewType}}">
+      <view class="problem-list {{isShowAll ? 'list-padding' : ''}}" wx:if="{{problemList.length > 0}}">
+        <view class="problem-item" wx:for="{{problemList}}" wx:key="id">
+          <qt-check-box wx:if="{{isShowAll}}" checked="{{item.checked}}" data-item='{{item}}' data-index="{{index}}" bind:tap="changeProblemChecked" class="checked-box"></qt-check-box>
+          <problem-item qt-class="problem-block {{isShowAll ? 'mini' : ''}}" item='{{item}}' data-index="{{index}}" bind:click='problemDetail' bind:longpress="showAll"></problem-item>
+        </view>
+        <baseline wx:if="{{page>1 && limit * page > total && problemList.length}}"></baseline>
+      </view>
+      <message-box wx:else message-text='暂无问题' is-click='{{false}}'></message-box>
+    </block>
+    <view wx:else class="room-body">
+      <block wx:for="{{roomList}}">
+        <view class="common-divider" wx:if="{{item.groupType === 2}}">
+          <view class="common-title">
+            <text class="iconfont icon-building"></text>
+            <text>{{item.name}}栋{{item.unit ? item.unit+'单元':''}}</text>
+          </view>
+          <view class="total-action">
+            <view class="iconfont icon-xianchang_i"></view>
+            <view>{{item.roomSum}}</view>
+            <view class="iconfont icon-exception yuan"></view>
+            <view style="color:#C14641">{{item.problem}}</view>
+          </view>
+        </view>
+        <view wx:else class="room-item" bind:tap="roomDetail" data-item='{{item}}'>
+          <view class="room-label">
+            <text>{{item.floor}}F</text>
+            <text class="room-line"></text>
+            <text>{{item.alias || item.name}}</text>
+          </view>
+          <!-- <view class="room-status" wx:if="{{item.problem > 0}}">{{item.problem}}</view> -->
+        </view>
+      </block>
+      <message-box wx:if="{{roomList.length < 1}}" message-text='暂无数据' is-click='{{false}}'></message-box>
+    </view>
+  </scroll-view>
+  <view class="bottom-box" wx:if="{{isShowAll}}">
+    <view class="checked-all" bind:tap="changeCheckedAll">
+      <qt-check-box class="checked-box" checked="{{isCheckedAll}}"></qt-check-box>
+      <text>全选</text>
+    </view>
+    <qt-button qt-class="btn" bind:tap="changeProblemStatus">关闭问题</qt-button>
+  </view>
+</view>
+<!-- 楼栋筛选 -->
+<filter-modal class="filter-model" filter-obj="{{buildingFilter}}" visible="{{buildingShow}}" bind:close='changeBuildingModel' bind:click='changeBuildingFilter'></filter-modal>
+<!-- 产品筛选 -->
+<filter-modal class="filter-model" filter-obj="{{productFilter}}" visible="{{productShow}}" bind:close='changeProductModel' bind:click='changeProductFilter'></filter-modal>
+<!-- 楼层筛选 -->
+<filter-modal class="filter-model" visible="{{floorShow}}" is-reset="{{true}}" bind:reset="resetFloorFilter" bind:close='changeFloorModel' bind:change='floorChange'>
+  <view class="filter_row">
+    <view class="filter_title">楼层</view>
+    <view wx:for="{{floorFilter}}" class="filter_item {{item.checked ? 'checked' :''}}" wx:key="id" catch:tap="floorClick" data-index="{{index}}" data-item='{{item}}'>
+      {{item.name}}
+    </view>
+  </view>
+</filter-modal>
+<!-- 类型筛选 -->
+<filter-modal class="filter-model" visible="{{typeShow}}" bind:close='changeTypeModel' bind:change="typeSave">
+  <block wx:if="{{stageList.length}}">
+    <view class="filter_row">
+      <view class="filter_title">阶段类型</view>
+      <view wx:for="{{stageList}}" class="filter_item {{item.id === checkedStage.id ? 'checked' :''}}" wx:key="id" catch:tap="changeStage" data-index="{{index}}" data-item='{{item}}'>
+        {{item.name}}
+      </view>
+    </view>
+    <view class="filter_row">
+      <view wx:for="{{checkedStage.list}}" class="filter_item {{item.id === checkedType.id ? 'checked' :''}}" wx:key="id" catch:tap="changeType" data-index="{{index}}" data-item='{{item}}'>
+        {{item.name}}
+      </view>
+    </view>
+    <view class="filter_row">
+      <view wx:for="{{checkedType.items}}" class="filter_item {{item.checked ? 'checked' :''}}" wx:key="id" catch:tap="changeSecendType" data-index="{{index}}" data-item='{{item}}'>
+        {{item.name}}
+      </view>
+    </view>
+  </block>
+  <view class="filter_row">
+    <view class="filter_title">标签</view>
+    <view wx:for="{{typeFilter}}" class="filter_item {{item.remark === checkedProblemType.remark ? 'checked' :''}}" wx:key="id" catch:tap="changeProblemType" data-index="{{index}}" data-item='{{item}}'>
+      {{item.name}}
+    </view>
+  </view>
+</filter-modal>
+<!-- 组合筛选框 -->
+<filter-modal class="filter-model" filter-obj="{{ commonFilter}}" visible="{{filterShow}}" is-reset="{{true}}" bind:change='changeCheckedFilter' bind:reset="resetFilter" bind:click="filterItemClick"></filter-modal>

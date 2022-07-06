@@ -1,0 +1,4 @@
+/* components/custom-nav/custom-nav.wxss */
+.nav{
+  margin-bottom: -1rpx;
+}

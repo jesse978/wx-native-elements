@@ -1,0 +1,54 @@
+@import '/assets/style/public_icon.wxss';
+
+.change_input {
+  background: #fff;
+}
+
+.listItem {
+  position: relative;
+  box-sizing: border-box;
+  height: 100rpx;
+  padding: 0 40rpx 0 40rpx;
+  /* margin-left: 35rpx; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #E1E1E1;
+}
+
+.itemText {
+  display: inline-block;
+  width: 25%;
+  line-height: 88rpx;
+  font-size: 30rpx;
+  color: #2b2b2b;
+}
+
+.itemInput {
+  flex: 1;
+  padding-right: 10rpx;
+  text-align: right;
+  line-height: 88rpx;
+  font-size: 30rpx;
+  color: #969696;
+}
+
+.itemRightText {
+  flex: 1;
+  padding-right: 10rpx;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #969696;
+}
+
+.edit {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 44rpx;
+  height: 64rpx;
+  font-size: 30rpx;
+  color: #989898;
+}

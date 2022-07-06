@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "group-room": "/components/group-room/group-room",
+    "group-product": "/components/group-product/group-product",
+    "problem-add-button": "/components/problem-add-button/problem-add-button"
+  }
+}

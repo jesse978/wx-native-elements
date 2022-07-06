@@ -1,0 +1,11 @@
+<!-- components/attachment-list/attachment-list.wxml -->
+<view class="adjunct-box">
+  <scroll-view scroll-x="true" style="width: 100%" lower-threshold='120'>
+    <view class="adjunct-head">
+      <view class="adjunct-item" wx:for="{{attachmentList}}" bind:tap="showBigImg" data-item="{{item}}">
+        <image class="adjunct-img" src="{{imgRoot}}/{{item}}.png" mode="aspectFill" lazy-load="false"></image>
+        <view>项目图纸.jpg</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

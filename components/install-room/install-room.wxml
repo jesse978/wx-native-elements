@@ -1,0 +1,181 @@
+<!-- components/install-room/install-room.wxml -->
+<view class="room-status">
+  <block wx:if="{{productGroup.length >0}}">
+    <!-- 组合 -->
+    <view class="combine">
+      <group-room type="{{3}}" bind:change="changeGroup"></group-room>
+      <view class="onthe onthe-top">
+        <view class="louzu-tag">
+          <view class="louzu-left">
+            <text class="iconfont icon-changping tag-building"></text>
+            产品组合
+          </view>
+        </view>
+        <view class="louzu-cont">
+          <view class="button" wx:for="{{productGroup}}" bind:tap="changeProductGroup" data-item="{{item}}">
+            <view class="louzu-but {{checkedProductGroup.id === item.id ? 'but-active':'' }}">
+              {{item.name || '全部产品'}}
+            </view>
+          </view>
+          <view class="little" bindtap="jumpGroup">
+            <text class="iconfont icon-more little-more"></text>
+          </view>
+        </view>
+        <view class="gaiyao text_overflow">{{checkedProductGroup.remark}}</view>
+      </view>
+    </view>
+    <tabs current="{{currentTab}}" i-class="room-tabs" text-color="#B7B7B7" current-color="#017AFD" bindchange="tabChange">
+      <tab key="0" title="主体"></tab>
+      <tab key="1" title="配套"></tab>
+    </tabs>
+    <scroll-view class="room-content" scroll-y enhanced show-scrollbar="{{false}}">
+      <view class="screen-top">
+        <view class="louzu-tag">
+          <view class="louzu-left">
+            <text class="iconfont icon-gongxu1 tag-building"></text>
+            工序统计
+          </view>
+          <view class="louzu-right right-box">
+            <view wx:for="{{stateArr}}" class="state-box {{state === item.remark ? 'checked' :''}}" bind:tap="changeState" data-value="{{item.remark}}">
+              <text>{{item.name}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 表格 -->
+      <view class="table">
+        <view class="table-head">
+          <view class="head-item name ">
+            <text>产品/工序</text>
+            <!-- <text>{{wxs.textOverflow(checkedProductGroup.name)}}</text>
+        <text class="iconfont icon-fall-triangle fil-icon"></text> -->
+          </view>
+          <view class="head-item" wx:for="{{tableHead}}" wx:for-item="head">
+            <text wx:if="{{head.stageType === 3}}">{{state === 2 ? '完成' :'未安装'}}</text>
+            <text wx:elif="{{head.stageType === 1}}">{{state === 2 ? '安装中' :'异常'}}</text>
+            <text wx:else>{{wxs.textOverflow(head.name)}} {{data.total}}</text>
+          </view>
+        </view>
+        <view class="table-content">
+          <block wx:if="{{!isHide}}">
+            <view class="table-row" wx:for="{{tableData}}" wx:for-item="data">
+              <view class="row-item name {{checkedItem.id == data.id ? 'checked':''}}" bind:tap="cellClick" data-product="{{data}}" data-item="{{data}}">
+                <view class="conteg">
+                  <text class="headline">{{wxs.textOverflow(data.name,6)}}</text>
+                  <text class="amount">{{data.rooms}}/{{data.total}}</text>
+                </view>
+              </view>
+              <view wx:for="{{data.itemInfos}}" bind:tap="cellClick" data-product="{{data}}" data-item="{{item}}" class="row-item {{checkedItem.id ==item.id ? 'checked':''}}">
+                {{item.total}}
+              </view>
+            </view>
+          </block>
+          <view class="table-row" wx:if="{{totalObj}}">
+            <view class="row-item name blue" bind:tap="changeHide">
+              <text>合计</text>
+              <text class="iconfont icon-{{isHide ? 'zhankai':'shouqi'}}"></text>
+            </view>
+            <view wx:for="{{totalObj.itemInfos}}" bind:tap="cellClick" data-product="{{totalObj}}" data-item="{{item}}" class="row-item {{checkedItem.id ==item.id ? 'checked':''}}">
+              {{item.total}}
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 房态内容 -->
+      <view class="floor">
+        <view class="ban">
+          <scroll-view class="floor-build" scroll-y enhanced show-scrollbar="{{false}}">
+            <view wx:for="{{buildingFilter}}" class="build  {{checkedBuilding.id === item.id ? 'build-active':''}}" bind:tap="changeBuilding" data-item="{{item}}">
+              <view class="building">{{item.alias|| item.name}}栋</view>
+            </view>
+          </scroll-view>
+        </view>
+        <view class="floor-sun" wx:if='{{roomList.length > 0}}'>
+          <!-- 筛选弹窗 -->
+          <view class="floor-filter">
+            <view class="filter-left">
+              <view class="filter" bindtap="showFloorModel">
+                <text>楼层</text>
+                <text class="iconfont icon-fall-triangle fil-icon"></text>
+              </view>
+              <view class="filter" bind:tap="showRoomModel">
+                <text>房号</text>
+                <text class="iconfont icon-fall-triangle fil-icon"></text>
+              </view>
+            </view>
+            <!-- <picker bindchange="updateTime" range="{{stageList}}">
+            <view class="filter-update filter">
+              <text>{{stageList[stageIndex]}}</text>
+              <text class="iconfont icon-fall-triangle fil-icon"></text>
+            </view>
+          </picker> -->
+          </view>
+          <view class="floor-content">
+            <view class="floor-info">
+              <text>共{{roomNum}}套</text>
+              <text style="margin-left:10rpx">{{filterStr}}</text>
+            </view>
+            <!-- 房间信息 -->
+            <view class="suite-roll">
+              <block wx:for="{{roomList}}" wx:for-index="floorIndex" wx:key="id">
+                <qt-divider wx:if="{{item.groupType === 2}}" wx:key="groupName" content='{{item.groupName}}单元' qt-class="newalter-divider" color="#6B6969"></qt-divider>
+                <view wx:else class="list-row" wx:key="id">
+                  <view class="floor-box">{{item.name}}F</view>
+                  <view class="room-box">
+                    <view wx:for="{{item.roomInfos}}" wx:for-item="room" wx:for-index="roomIndex" class="room-item" bind:tap="roomDetail" data-item='{{room}}' wx:key="id">
+                      <!-- <text class="iconfont icon-exception room-exception" wx:if="{{room.problem > 0}}"></text> -->
+                      <text>{{room.alias || room.name }}</text>
+                    </view>
+                  </view>
+                </view>
+              </block>
+            </view>
+          </view>
+        </view>
+        <message-box wx:else message-text='暂无数据' is-click='{{false}}'></message-box>
+      </view>
+    </scroll-view>
+    <!-- <view class="batch-problem" bind:tap="batchProblem">
+    <text class="iconfont icon-piLianwt batch-piLianwt"></text>
+  </view> -->
+    <problem-add-button bind:click="addProblem"></problem-add-button>
+  </block>
+  <block wx:else>
+    <message-box></message-box>
+    <view class="add-group" bind:tap="jumpGroup">
+      请您先
+      <text style="color:#5992D1">新建产品组 ></text>
+    </view>
+  </block>
+</view>
+<!-- 楼层筛选 -->
+<filter-modal class="filter-model" visible="{{floorShow}}" bind:close='closeFloorModel' bind:change='changeFloorFilter' is-reset="{{true}}" bind:reset="resetFloorFilter">
+  <view class="filter_row">
+    <view class="filter_title">楼层</view>
+    <view wx:for="{{floorFilter}}" class="filter_item {{item.checked ? 'checked' :''}}" wx:key="id" catch:tap="floorClick" data-index="{{index}}" data-item='{{item}}'>
+      {{item.alias||item.name}}
+    </view>
+  </view>
+</filter-modal>
+<!-- 房号筛选 -->
+<filter-modal class="filter-model" visible="{{roomShow}}" bind:close='closeRoomModel' bind:change='changeRoomFilter' is-reset="{{true}}" bind:reset="resetRoomFilter">
+  <view class="filter_row">
+    <view class="filter_title">房号筛选</view>
+    <view wx:for="{{roomFilter}}" class="filter_item {{item.checked ? 'checked' :''}}" wx:key="id" catch:tap="roomClick" data-index="{{index}}" data-item='{{item}}'>
+      {{item.alias|| item.name}}
+    </view>
+  </view>
+</filter-modal>
+<wxs module="wxs">
+  function textOverflow(str, max) {
+    var max = max > 0 ? max : 4
+    if (str && str.length > max) {
+      return str.substring(0, max - 1) + "..."
+    } else {
+      return str
+    }
+  }
+  module.exports = {
+    textOverflow: textOverflow
+  }
+</wxs>

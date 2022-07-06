@@ -1,0 +1,39 @@
+<view class="advanc">
+  <slot></slot>
+  <!-- 是否显示tab -->
+  <scroll-view class="advanc-nav" scroll-x enhanced show-scrollbar="{{false}}" wx:if="{{navShow}}">
+    <view class="nav {{navTab==index?'nav-active':''}}" wx:for="{{datas}}" key="index" bindtap="switchCategory" data-index="{{index}}">{{item.name}}</view>
+  </scroll-view>
+
+  <!-- style-padding兼容是否添加底部按钮 -->
+  <scroll-view class="advanc-scroll" scroll-y enhanced show-scrollbar="{{false}}" style="padding-bottom:{{padding?'140rpx':'0'}}">
+
+    <view class="advanc-cont" wx:for="{{navShow ? datas[navTab].wrappers : title ? datas : ['']}}" key="index" wx:if="{{type!='weight' || item.tag || !title}}">
+
+      <!-- 是否显示title -->
+      <view class="advanc-top" wx:if="{{title}}">
+        <view class="advanc-title">{{item.name}}</view>
+        <view class="advanc-add" wx:if="{{add}}" bindtap="addPart">+ 新增部件</view>
+        <!-- 等于权重的时候显示总和 -->
+        <view class="sum" wx:if="{{type=='weight'}}">
+          <text class="sum-txt">总和</text>
+          <text class="sum-num">{{item.sum}}%</text>
+        </view>
+      </view>
+
+      <!-- 内容区域 -->
+      <view class="advanc-box">
+        <block wx:for="{{title ? item[contentFields] : datas}}" wx:for-item="m" wx:for-index="i">
+          <view class="advanc-item" wx:if="{{type!='weight' || m.required || !title}}">
+            <view class="advanc-txt">
+              <text class="iconfont icon-edit advanc-edit" wx:if="{{icon}}"></text>
+              <input class="weui-input" value="{{m.name}}" disabled="{{true}}" bindblur="levelEditor" data-index="{{index}}" placeholder="请输入" />
+            </view>
+            <advanc-slot slotParam="{{m[slotParam]}}" type="{{type}}" bindswitch="switch" data-item="{{m}}" data-index="{{title?index:i}}" data-i="{{i}}"></advanc-slot>
+          </view>
+        </block>
+      </view>
+
+    </view>
+  </scroll-view>
+</view>

@@ -1,0 +1,6 @@
+<!-- components/search-box/search-box.wxml -->
+<view class="search-box qt-class">
+  <text class="iconfont icon-serch"></text>
+  <input value="{{value}}" class="search-input" placeholder="{{placeholder}}" type="text" bindinput="inputValue" bindblur='blur' bindconfirm='confirm'  confirm-type="search"/>
+  <text wx:if="{{value!==''}}" class="iconfont icon-delete delete" bind:tap="cleanValue"></text>
+</view>

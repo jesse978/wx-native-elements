@@ -1,0 +1,5 @@
+<view class="list {{ isShow ? 'show' : '' }} qt-class {{ direction }}" style="width: {{ width }}">
+  <slot></slot>
+</view>
+
+<view class="mask {{ isShow ? 'show' : '' }}" bindtap="hidden" catchtouchmove="stopCatchTouch"></view>

@@ -1,0 +1,25 @@
+/* components/problem-add-float/problem-add-float.wxss */
+@import "/assets/style/public_icon.wxss";
+
+/* 问题 */
+.batch-problem {
+  position: fixed;
+  z-index: 100;
+  bottom: 15%;
+  right: 20rpx;
+  width: 90rpx;
+  height: 90rpx;
+  text-align: center;
+  background: linear-gradient(134deg, #2790FF 0%, #017AFD 100%);
+  box-shadow: 0px 3px 12px rgba(125, 123, 123, 0.16);
+  border-radius: 50%;
+}
+
+.batch-piLianwt {
+  font-size: 46rpx;
+  color: #fff;
+  position: absolute;
+  top: 54%;
+  left: 54%;
+  transform: translate(-50%, -50%);
+}

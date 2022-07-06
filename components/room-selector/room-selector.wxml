@@ -1,0 +1,68 @@
+<!-- components/room-selector/room-selector.wxml -->
+<view class="mask  {{visible ? 'show' :''}}" catch:tap='close' catchtouchmove="stopTap"></view>
+<view class="room-selector {{visible ? 'show' :''}}">
+  <view class="filter-head">
+    <view class="filter-title">
+      <text class="iconfont icon-building"></text>
+      <text>楼栋房号</text>
+      <text wx:if="{{!mode}}">（可多选）</text>
+      <text wx:else>（单选）</text>
+    </view>
+    <view class="zhankai" bind:tap="changeIsAll">{{isAll?'收起':'展开全部房间'}}</view>
+    <view class="close-btn" bind:tap="close">关闭</view>
+  </view>
+  <!-- 房态内容 -->
+  <view class="floor">
+    <scroll-view scroll-y enhanced show-scrollbar="{{false}}" class="floor-build">
+      <view wx:for="{{buildingList}}" class="build  {{buildingIndex === index ? 'build-active':''}}" bind:tap="changeBuilding" data-item="{{item}}" data-index="{{index}}">
+        <view class="building">{{item.alias|| item.name}}栋</view>
+      </view>
+    </scroll-view>
+    <view class="floor-content" wx:if='{{true}}'>
+      <view class="floor-info">
+        <text>
+          <text>已选</text>
+          <text style="color:#017AFD">{{buildingList[buildingIndex].checkedNum || 0}}</text>
+          <text wx:if="{{isAll}}">/{{buildingList[buildingIndex].total}}</text>
+          <text wx:else>/{{buildingList[buildingIndex].selectedNum}}</text>
+        </text>
+        <view wx:if="{{mode===0}}" class="select-all {{buildingList[buildingIndex].checkedAll? 'checked':''}}" bind:tap="unitCheckedAll">
+          <text class="iconfont icon-select-all"></text>
+          <text>全选</text>
+        </view>
+      </view>
+      <!-- 房间信息 -->
+      <scroll-view scroll-y class="suite-roll" enhanced show-scrollbar="{{false}}">
+        <block wx:for="{{buildingList[buildingIndex].cacheData}}" wx:for-index="unitIndex" wx:for-item="unit" wx:key="id">
+          <qt-divider wx:if="{{buildingList[buildingIndex].cacheData.length > 1}}" wx:key="groupName" content='{{unit.alias|| unit.name}}单元' qt-class="newalter-divider" color="#6B6969"></qt-divider>
+          <view wx:for="{{unit.floorInfos}}" wx:for-item="floor" wx:for-index="floorIndex" class="list-row" wx:key="id">
+            <view class="floor-box {{floor.checked ? 'checked' : ''}}" bind:tap="floorClick" data-index="{{floorIndex}}" data-item='{{floor}}' data-unit-index="{{unitIndex}}">
+              {{floor.alias || floor.name}}F
+              <text wx:if="{{floor.checked}}" class="iconfont icon-fuanxuan check-block"></text>
+            </view>
+            <view class="room-box">
+              <view wx:for="{{floor.roomInfos}}" wx:for-item="room" wx:for-index="roomIndex" class="room-item {{room.checked||radioItem.id===room.id ? 'checked' : ''}}" bind:longpress="batchRoom" bind:tap="roomClick" data-unit-index="{{unitIndex}}" data-floor-index='{{floorIndex}}' data-room-index='{{roomIndex}}' data-item='{{room}}' data-floor-item='{{floor}}' wx:key="id">
+                <text>{{room.alias || room.name }}</text>
+                <text wx:if="{{room.checked||radioItem.id === room.id}}" class="iconfont icon-fuanxuan check-block"></text>
+              </view>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+    <message-box wx:else message-text='暂无数据' is-click='{{false}}'></message-box>
+  </view>
+  <view class="action-box" wx:if="{{!mode}}">
+    <view class="remark" wx:if="{{isDetail}}">概览：{{remark}}</view>
+    <view class="bottom-title">
+      <view class="total" catch:tap="{{isDetail?'closeDetail':'showDetail'}}">
+        <text>共选中 {{roomTotal}} 套</text>
+        <view class="detail" wx:if="{{roomTotal >0}}">
+          <text>详情</text>
+          <text class="iconfont icon-shouqi"></text>
+        </view>
+      </view>
+      <qt-button qt-class="btn" bind:tap="saveParams" data-state="{{true}}">确认</qt-button>
+    </view>
+  </view>
+</view>

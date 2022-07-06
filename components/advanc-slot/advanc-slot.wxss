@@ -1,0 +1,43 @@
+@import "/assets/style/public_icon.wxss";
+
+.switch {
+  zoom: .8;
+}
+
+.button {
+  display: flex;
+  height: 55rpx;
+  align-items: center;
+  background: rgba(246, 246, 246, 0.39);
+  border-radius: 8rpx;
+}
+
+.btn {
+  width: 108rpx;
+  height: 45rpx;
+  line-height: 45rpx;
+  font-size: 24rpx;
+  border-radius: 8rpx;
+  text-align: center;
+  color: #535353;
+}
+
+.btn-active {
+  background: rgba(47, 159, 255);
+  color: #fff;
+}
+
+.weight{
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  color: #989898;
+}
+
+.weight-input{
+  text-align: right;
+}
+
+.weight .iconfont{
+  margin-left: 12rpx;
+}

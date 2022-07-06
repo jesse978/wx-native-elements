@@ -1,0 +1,14 @@
+<view class="user_head" bind:tap="changeMenu">
+  <view class="userIdentity" >
+    <text>{{checked.label}}</text>
+  </view>
+    <text class="iconfont icon-rh_arrows {{isDown ? 'isDown' : ''}}"></text>
+</view>
+<view class="downMenu" style="height:{{isDown ? list.length*80 : 0}}rpx">
+  <block wx:for="{{list}}">
+    <view class="menuItem" bind:tap="checkedMenu" data-item="{{item}}">
+      <text style="{{checked.value === item.value ? 'color:#309FFF' :'' }}">{{item.label}}</text>
+    </view>
+  </block>
+</view>
+<view class="mask" hidden="{{!isMask}}" bind:tap="changeMenu" catchtouchmove="stopTouch"></view>

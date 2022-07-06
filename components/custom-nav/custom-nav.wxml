@@ -1,0 +1,3 @@
+<!--components/custom-nav/custom-nav.wxml-->
+<!-- 自定义顶部时填充状态栏 -->
+<view class="nav qt-class" style="padding-top:{{topMargin}}px;background:{{background}};;background-size:100% auto;"></view>

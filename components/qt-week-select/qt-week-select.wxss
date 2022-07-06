@@ -1,0 +1,43 @@
+/* components/qt-week-select/qt-week-select.wxss */
+.select_row{
+  background: #fff;
+  padding: 25rpx 0;
+  color: #969696;
+  font-size: 30rpx;
+}
+
+.select_title{
+  margin:0 0 20rpx 25rpx ;
+  color: rgba(47, 47, 47, 1);
+  font-weight: 500;
+}
+
+.date_list{
+  padding:0 15rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+}
+
+.date_list:before,
+.date_list:after {
+  content: '';
+  display: block;
+}
+
+
+.date_list .date_item{
+  height: 90rpx;
+  width: 90rpx;
+  display: inline-block;
+  border: 1px solid #E5E5E5;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 90rpx;
+}
+
+.date_list .checked_item{
+  background:rgba(48,159,255,0.1);
+  border:1px solid rgba(48,159,255,1);
+  color: #309FFF;
+}

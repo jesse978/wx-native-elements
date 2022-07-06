@@ -1,0 +1,9 @@
+<view class="change_input">
+  <view class="listItem qt-class" hover-stop-propagation="false" bind:tap="focusInput">
+    <text class="itemText">{{title}}</text>
+    <input class="itemInput" wx:if="{{ isInput }}" type="{{inputType}}" value="{{inputValue}}" maxlength='{{maxlength}}' bindinput="changeValue" bindblur='loseFocus' maxlength="20" focus adjust-position />
+    <text class="itemText itemRightText" wx:if="{{ !isInput}}">{{inputValue || placeholder}}</text>
+    <!-- <image wx:if="{{ !isInput }}" class="arrow" src="{{ imgRoot }}/edit.png"></image> -->
+    <text wx:if="{{ !isInput }}" class="iconfont icon-{{icon}} edit" bind:tap="iconClick"></text>
+  </view>
+</view>

@@ -1,0 +1,3 @@
+<scroll-view class="advanc-nav" scroll-x enhanced show-scrollbar="{{false}}">
+  <view class="nav {{navTab==index?'nav-active':''}}" wx:for="{{datas}}" key="index" bindtap="switchCategory" data-index="{{index}}">{{item.name}}</view>
+</scroll-view>

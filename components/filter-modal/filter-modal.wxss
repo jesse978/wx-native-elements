@@ -1,0 +1,146 @@
+/* components/filter-modal/filter-modal.wxss */
+@import "/assets/style/public_icon.wxss";
+
+.filter_box {
+  position: relative;
+  width: 718rpx;
+  padding: 32rpx;
+  color: #333333;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 18rpx;
+  outline: 0;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  transform: translateZ(1px);
+  opacity: 0;
+  visibility: hidden;
+  overflow: auto;
+}
+
+.filter_show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.filter_mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  transition: all 0.2s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.filter_mask_show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.filter_box .icon-close {
+  display: inline-block;
+  vertical-align: middle;
+  transform: rotate(90deg);
+  font-size: 40rpx;
+  color: #a4a4a4;
+}
+
+.filter_head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  line-height: 45rpx;
+  color: #2f2f2f;
+}
+
+.filter_body {
+  max-height: 800rpx;
+}
+
+.filter_row {
+  margin-top: 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.filter_title {
+  margin-bottom: 5rpx;
+  width: 100%;
+  font-size: 26rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #333333;
+  line-height: 37rpx;
+}
+
+.filter_item {
+  margin: 0 19rpx 12rpx 0;
+  padding: 18.5rpx 12rpx;
+  min-width: 144rpx;
+  max-width: 260rpx;
+  height: 70rpx;
+  font-size: 26rpx;
+  font-weight: bold;
+  color: rgba(82, 82, 82, 1);
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background: rgba(242, 242, 242, 1);
+  border-radius: 10rpx;
+}
+
+/* .filter_body :nth-child(4n){
+  margin-right: 0;
+} */
+
+.filter_body .checked {
+  background: rgba(47, 159, 255, 1);
+  color: #fff;
+}
+
+.filter_bottom {
+  margin-top: 10rpx;
+  padding-top: 18rpx;
+  border-top: 1px solid #f1f1f1;
+}
+
+.filter_bottom .reset_btn {
+  float: left;
+  width: 145rpx;
+  height: 69rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f1f1f1;
+  border-radius: 8rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  line-height: 42rpx;
+  color: #4093ff;
+}
+
+.filter_bottom .save_btn {
+  float: right;
+  width: 145rpx;
+  height: 69rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #4093ff;
+  border-radius: 8rpx;
+  font-size: 30rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  line-height: 42rpx;
+  color: #f1f1f1;
+}

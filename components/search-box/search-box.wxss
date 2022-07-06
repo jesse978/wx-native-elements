@@ -1,0 +1,32 @@
+/* components/search-box/search-box.wxss */
+@import '/assets/style/public_icon.wxss';
+.search-box {
+  margin: 12rpx auto;
+  padding: 0 21rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 690rpx;
+  height: 60rpx;
+  background: #ffffff;
+  border-radius: 30rpx;
+  color: #A1A1A1;
+}
+
+.search-input {
+  margin: 0 12rpx;
+  flex: 1;
+  color: #646464;
+}
+
+.search-box .delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30rpx;
+  height: 30rpx;
+  background-color: #b6b6b6;
+  border-radius: 50%;
+  font-size: 24rpx;
+  color: #ffffff;
+}

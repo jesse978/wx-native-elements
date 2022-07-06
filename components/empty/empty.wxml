@@ -1,0 +1,8 @@
+<view class="empty">
+  <view class="empty-img">
+    <image class="emp-img" src="{{imgRoot}}/filenull.png"></image>
+  </view>
+  <view class="empty-title">{{title}}</view>
+  <view class="empty-txt">{{describe}}</view>
+  <view class="but-add" bindtap="addCombine">{{butxt}}</view>
+</view>

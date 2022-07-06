@@ -1,0 +1,9 @@
+<view
+    class="qt-btn qt-class {{type}} {{ disabled ? 'disabled' : '' }} {{ hollow ? 'hollow' : '' }}"
+    bindtap="handleTap"
+    hover-class="{{ disabled ? none : (hoverClass ? hoverClass : ( hollow ? 'qt-hover-hollow-class' : 'qt-hover-class' )) }}"
+>
+  <slot></slot>
+</view>
+
+

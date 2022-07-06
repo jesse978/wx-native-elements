@@ -1,0 +1,25 @@
+<!-- components/group-room/group-room.wxml -->
+<view class="group-room onthe">
+  <view class="louzu-tag">
+    <view class="louzu-left">
+      <text class="iconfont icon-xianchang_i tag-building"></text>
+      房间组合
+    </view>
+    <view class="louzu-right">
+      <text>共</text>
+      <!-- <text wx:if="{{type === 3}}">{{checkedGroup.installable}}{{checkedGroup.installable>-1?'/':''}}</text> -->
+      <text>{{checkedGroup.totalRoom}}套</text>
+    </view>
+  </view>
+  <view class="louzu-cont">
+    <view class="button">
+      <view class="louzu-but {{checkedGroup.id == item.id ? 'but-active':''}}" wx:for="{{groupList}}" key="index" bind:tap="changeGroup" data-item="{{item}}">
+        {{item.name?item.name:'全部房间'}}
+      </view>
+    </view>
+    <view class="little" bindtap="groupManage">
+      <text class="iconfont icon-more little-more"></text>
+    </view>
+  </view>
+  <view class="gaiyao text_overflow">{{checkedGroup.remark}}</view>
+</view>

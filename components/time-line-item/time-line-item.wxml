@@ -1,0 +1,17 @@
+<view class="message_item qt-class" bind:tap="click">
+  <view class="lf_box">
+    <view class="date">{{date}}</view>
+    <view class="time">{{time}}</view>
+    <text class="iconfont icon-round"></text>
+  </view>
+  <view class="rt_box">
+    <view class="title">
+      <view class="label text_overflow">
+        <text>{{title}}</text>
+        <text class="state {{state}}" >{{stateLabel ? '('+stateLabel+')' : ''}}</text>
+      </view>
+      <text class="iconfont icon-rh_arrows" wx:if="{{isDetail}}"></text>
+    </view>
+    <view class="detail">{{info}}</view>
+  </view>
+</view>

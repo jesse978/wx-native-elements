@@ -1,0 +1,26 @@
+<!-- components/filter-modal/filter-modal.wxml -->
+<view class="filter_mask {{visible ? 'filter_mask_show' :''}}" catch:tap='changeFilter' catchtouchmove="stopTap">
+  <view class="filter_box {{ visible ? 'filter_show' : '' }}" catch:tap="stopTap" catchtouchmove="stopTap">
+    <view class="filter_head">
+      <text>{{title}}</text>
+      <!-- <text class="iconfont icon-close" catch:tap="changeFilter"></text> -->
+    </view>
+    <scroll-view class="filter_body" scroll-y>
+      <block wx:if="{{!isCustom}}">
+        <view class="filter_row" wx:for="{{filterObj}}" wx:key="id" wx:for-index="key" wx:for-item="obj">
+          <block>
+            <view class="filter_title">{{obj.name}}</view>
+            <view wx:for="{{obj.list}}" class="filter_item {{ obj.checked === item[currentKey] ? 'checked' :''}}" wx:key="id" catch:tap="itemClick" data-item="{{item}}" data-type='{{key}}'>
+              {{item.name}}
+            </view>
+          </block>
+        </view>
+      </block>
+      <slot></slot>
+    </scroll-view>
+    <view class="filter_bottom" wx:if="{{isReset || isSave}}">
+      <view wx:if="{{isReset}}" class="reset_btn" bind:tap="reset">重置</view>
+      <view wx:if="{{isSave}}" class="save_btn" bind:tap="changeFilter">确定</view>
+    </view>
+  </view>
+</view>

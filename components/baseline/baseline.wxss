@@ -1,0 +1,6 @@
+.baseline{
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+  color: #d1d1d1;
+}

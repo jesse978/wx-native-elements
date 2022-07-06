@@ -1,0 +1,10 @@
+<view class="select_row my-class">
+  <view class="select_title" wx:if="{{showTitle}}">
+    <text>{{title}}：{{repetitionDate}}</text>
+  </view>
+  <view class="date_list">
+    <block wx:for="{{dateList}}">
+      <text class="date_item {{item.checked ? 'checked_item' : ''}}" data-index="{{index}}" data-value="{{item.value}}" bind:tap="itemClick">{{item.name}}</text>
+    </block>
+  </view>
+</view>

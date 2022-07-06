@@ -1,0 +1,4 @@
+  <view class="empty_msg_box">
+    <image class="image" src="{{ imgRoot }}/{{icon}}.png" mode="aspectFit"></image>
+    <view class="text">{{ msg }}</view>
+  </view>

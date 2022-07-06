@@ -1,0 +1,20 @@
+<!-- components/model-installer/model-installer.wxml -->
+<view class="mask {{visible? 'show' :''}}">
+  <view class="installer-box">
+    <view class="installer-head">
+      <text class="divider-line"></text>
+      <text style="flex:1;">选择安装工</text>
+      <text class="iconfont icon-close" bind:tap="close"></text>
+    </view>
+    <scroll-view scroll-y="true" bindscrolltolower="onload" class="installer-list">
+      <view class="installer-item" wx:for="{{list}}" bind:tap="changeChecked" data-item="{{item}}">
+        <view class="installer-name">{{item.name || item.mobile }}</view>
+        <qt-check-box checked="{{checkedInstaller.id === item.id}}"></qt-check-box>
+      </view>
+    </scroll-view>
+    <view class="installer-btn">
+      <view class="btn-item save" bind:tap="save">确定</view> 
+      <view class="btn-item" bind:tap="skip">跳过</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,14 @@
+.empty_msg_box {
+  margin-top: 300rpx;
+  text-align: center;
+}
+.empty_msg_box .image {
+  width: 310rpx;
+  height: 269rpx;
+}
+.empty_msg_box .text {
+  margin-top: 30rpx;
+  font-size: 30rpx;
+  color:rgba(78,78,78,0.6);
+  line-height: 45rpx;
+}

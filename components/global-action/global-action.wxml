@@ -1,0 +1,4 @@
+<!--components/action-box/action-box.wxml-->
+ <view class="add-box">
+    <text class="iconfont icon-add" bind:tap="addIssue"></text>
+  </view>

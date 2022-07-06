@@ -1,0 +1,78 @@
+<scroll-view class="scroll" scroll-y>
+  <block wx:for="{{list}}">
+    <view class="setup">
+      <view class="setup-title">
+        <text>{{item.name}}</text>
+      </view>
+      <block wx:for="{{actionList}}" wx:for-item="act" wx:for-index="actIndex">
+        <view wx:if="{{userInfo.opRange||item.stage==1||item.stage==13||actIndex==3}}" class="setup-epc" data-item="{{item}}" bindtap="{{act.event}}">
+          <text>{{act.name}}</text>
+          <text class="iconfont icon-rh_arrows"></text>
+        </view>
+      </block>
+    </view>
+    <!-- <view class="setup" wx:if="{{item.stage==1}}">
+      <view class="setup-title">
+        <text>工作面统计配置</text>
+      </view>
+      <view class="setup-epc" bindtap="jumpAddCriteria" data-data-type="2" data-item="{{list[0]}}">
+        <text>产品统计</text>
+        <text class="iconfont icon-rh_arrows"></text>
+      </view>
+    </view> -->
+    <view class="setup" wx:if="{{item.stage==12}}">
+      <view class="setup-title">
+        <text>{{item.name}}统计配置</text>
+      </view>
+      <!-- <view class="setup-epc" bindtap="jumpAddCriteria" data-data-type="2" data-item="{{item}}">
+        <text>产品统计</text>
+        <text class="iconfont icon-rh_arrows"></text>
+      </view> -->
+      <view wx:if="{{index==0}}" class="setup-epc" data-data-type="3" data-item="{{item}}" bind:tap="jumpInstallPage">
+        <text>可安装统计</text>
+        <text class="iconfont icon-rh_arrows"></text>
+      </view>
+    </view>
+  </block>
+  <view class="setup" wx:if="{{type=='product'}}">
+    <view class="setup-title">
+      <text>部件配置</text>
+    </view>
+    <view class="setup-epc" bindtap="jumpParts">
+      <text>主体部件配置</text>
+      <text class="iconfont icon-rh_arrows"></text>
+    </view>
+  </view>
+  <block wx:if="{{type==='install'}}">
+    <view class="setup">
+      <view class="setup-title">
+        <text>工序配置</text>
+      </view>
+      <!-- <view class="setup-epc" bindtap="jumpIsMainBody">
+        <text>主体工序</text>
+        <text class="iconfont icon-rh_arrows"></text>
+      </view> -->
+      <view class="setup-epc" bindtap="jumpInBulk">
+        <text>批量操作</text>
+        <text class="iconfont icon-rh_arrows"></text>
+      </view>
+      <!-- <view class="setup-epc" bindtap="jumpInspect">
+        <text>工序自检</text>
+        <text class="iconfont icon-rh_arrows"></text>
+      </view> -->
+    </view>
+    <!-- <view class="setup">
+      <view class="setup-title">
+        <text>权重管理</text>
+      </view>
+      <view class="setup-epc" bindtap="jumpProductsWeight">
+        <text>产品权重</text>
+        <text class="iconfont icon-rh_arrows"></text>
+      </view>
+      <view class="setup-epc" bindtap="jumpProcessesWeight">
+        <text>工序权重</text>
+        <text class="iconfont icon-rh_arrows"></text>
+      </view>
+    </view> -->
+  </block>
+</scroll-view>

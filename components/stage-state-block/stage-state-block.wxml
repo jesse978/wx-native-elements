@@ -1,0 +1,19 @@
+<!-- components/stage-state-block/stage-state-block.wxml -->
+<view class="state-box {{wxs.getColor(type)}}">
+  <view class="iconfont icon-{{wxs.getIcon(state)}} state-block"></view>
+  <view class="problem-block" wx:if="{{showTag}}">{{num}}</view>
+</view>
+<wxs module="wxs">
+  function getColor(type){
+    return ['unfinished','skip','complete','underway'][type]
+  }
+  function getIcon(state){
+    return ['circle','unfinished','complete','underway'][state]
+  }
+ 
+
+  module.exports = {
+  getIcon: getIcon,
+  getColor:getColor,
+}
+</wxs>

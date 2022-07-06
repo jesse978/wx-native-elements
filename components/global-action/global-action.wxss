@@ -1,0 +1,20 @@
+/* components/action-box/action-box.wxss */
+@import '/assets/style/public_icon.wxss';
+.add-box {
+  z-index: 100;
+  position: fixed;
+  right: 43rpx;
+  bottom: 18rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80rpx;
+  height: 80rpx;
+  background: #2d8cf0;
+  box-shadow: 0rpx 2rpx 20rpx 0rpx rgba(143, 154, 160, 0.16);
+  border-radius: 50%;
+}
+.add-box .icon-add {
+  font-size: 48rpx;
+  color: #fff;
+}

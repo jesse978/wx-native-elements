@@ -1,0 +1,27 @@
+/* components/qt-check-box/qt-check-box.wxss */
+@import "/assets/style/public_icon.wxss";
+
+.check_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  /* background: rgba(255, 255, 255, 1); */
+  /* background: #f6f6f6; */
+  border: 2rpx solid #707070;
+}
+
+.check_box .iconfont {
+  font-size: 36rpx;
+}
+
+
+.gray {
+  background: #f5f6f7;
+}
+
+.checked {
+  color: #017afd;
+}

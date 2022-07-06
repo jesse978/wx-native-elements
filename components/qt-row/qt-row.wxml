@@ -1,0 +1,19 @@
+<view class="qt_row">
+  <view wx:if="{{ type }}" class="list list_item_{{ type }} qt-class" style="{{height ? ('height:'+height+'rpx') : '' }}" hover-class="{{isLink ? hoverClass : '' }}" bindtap="handleTap">
+    <image class="icon" wx:if="{{ iconUrl }}" src="{{ iconUrl }}"></image>
+    <block wx:if="{{ type === 'big' }}">
+      <view class="content">
+        <text class="title" style="color:{{color}}">{{ title }}</text>
+        <text class="detail">{{ content }}</text>
+      </view>
+    </block>
+    <block wx:if="{{ type === 'small' }}">
+      <view class="text title" style="color:{{color}}">{{ title }}</view>
+      <view class="text value text_overflow">
+        {{ content }}
+        <slot></slot>
+      </view>
+    </block>
+    <text wx:if="{{ isLink }}" class="iconfont icon-rh_arrows"></text>
+  </view>
+</view>

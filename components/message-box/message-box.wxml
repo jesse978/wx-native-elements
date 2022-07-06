@@ -1,0 +1,9 @@
+<!-- components/message-box.wxml -->
+<view class="message_box qt-class" bind:tap="click">
+  <image class="img-class" wx:if="{{imgUrl}}" src="{{imgUrl}}" mode="aspectFit" lazy-load="false"></image>
+  <image class="img img-class" wx:else src="{{imgRoot}}/null_data.png" mode="scaleToFill" lazy-load="false"></image>
+  <!-- <view class="text">
+    <text>{{messageText}}</text>
+    <image wx:if="{{isClick}}" class="icon_more" src="{{imgRoot}}/more_gray.png" mode="scaleToFill" lazy-load="false"></image>
+  </view> -->
+</view>
