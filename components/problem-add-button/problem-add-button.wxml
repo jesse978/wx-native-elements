@@ -1,5 +1,0 @@
-<!-- components/problem-add-float/problem-add-float.wxml -->
-<!-- 提交问题 -->
-<view class="batch-problem qt-class" bind:tap="addProblem">
-  <text class="iconfont icon-piLianwt batch-piLianwt"></text>
-</view>

@@ -1,4 +1,0 @@
-<view class="comp-button">
-  <view class="comp-cancel" bindtap="cancel">取消</view>
-  <view class="comp-confirm" bindtap="confirm">确认</view>
-</view>
