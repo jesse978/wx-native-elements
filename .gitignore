@@ -1,0 +1,12 @@
+.idea/
+node_modules/
+build/
+log/
+npm-debug.log
+.vscode/
+can
+click
+delete
+remove
+.DS_Store
+src/.DS_Store
