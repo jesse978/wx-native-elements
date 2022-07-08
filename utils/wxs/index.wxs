@@ -1,0 +1,19 @@
+/*
+ * @Description:
+ * @Author: Jesse
+ * @Date: 2022-03-07 15:11:45
+ * @LastEditTime: 2022-03-07 15:11:58
+ * @FilePath: \cpmsma-v1\utils\wxs\index.wxs
+ * @LastEditors: Jesse
+ */
+function textOverflow(str, max) {
+  var max = max > 0 ? max : 4;
+  if (str && str.length > max) {
+    return str.substring(0, max - 1) + "...";
+  } else {
+    return str;
+  }
+}
+module.exports = {
+  textOverflow: textOverflow,
+};
