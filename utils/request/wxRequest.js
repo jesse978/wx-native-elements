@@ -95,20 +95,7 @@ wxRequest.request = function (options) {
   if (this.tokenInfo) {
     header["TOKEN"] = this.tokenInfo.access;
   }
-  // 如果商户信息存在给 Header 带上 商户ID
-  let currentCompany = wx.getStorageSync("currentCompany") || "";
-  let currentProject = wx.getStorageSync("currentProject") || "";
-  let currentIdentity = wx.getStorageSync("currentIdentity") || "";
-  if (currentCompany !== "") {
-    header["REQ-IDENTITY"] = currentCompany.id;
-  }
-  if (currentProject !== "") {
-    header["REQ-PROJECT"] = currentProject.id;
-  }
-  if (currentIdentity !== "") {
-    header["REQ-IDTAG"] = currentIdentity.value;
-  }
-  header["REQ-VERSION"] = 1;
+
   return new Promise((resolve, reject) => {
     wxApiPromise("request", options)
       .then(res => {

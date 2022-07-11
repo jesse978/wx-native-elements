@@ -75,11 +75,7 @@ const errCode = {
         ui: "技术故障，无法拉取数据，请联系客服",
         showUI: true,
     },
-    5426: {
-        msg: "favorite limit",
-        ui: "已达到收藏上限",
-        showUI: true,
-    },
+    5426: 'none',
     5427: {
         msg: "problem duplicate",
         ui: "问题重复",
@@ -97,21 +93,9 @@ const errCode = {
     }, //有未完成的订单
     5430: "duplicate request",
     5431: "resources locked",
-    5432: {
-        msg: "",
-        ui: "没有匹配的房间",
-        showUI: true,
-    },
-    5433: {
-        msg: "",
-        ui: "事件名重复",
-        showUI: true,
-    },
-    5434: {
-        msg: "",
-        ui: "至少需要启用一个选项",
-        showUI: true,
-    },
+    5432: 'none',
+    5433: 'none',
+    5434: 'none',
     5435: "unified trade timeout",
     5436: "ticket invalid",
     5437: {
@@ -164,11 +148,7 @@ const errCode = {
         ui: "json数据格式错误",
         showUI: true,
     },
-    5429: {
-        msg: "completionStatus",
-        ui: "文档未上传或审批",
-        showUI: true,
-    },
+    5429: 'none',
 
 };
 
