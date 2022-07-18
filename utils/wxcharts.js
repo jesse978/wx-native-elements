@@ -217,8 +217,8 @@ function createCurveControlPoints(points, i) {
     }
 
     return {
-        ctrA: { x: pAx, y: pAy },
-        ctrB: { x: pBx, y: pBy }
+        ctrA: {x: pAx, y: pAy},
+        ctrB: {x: pBx, y: pBy}
     };
 }
 
@@ -337,7 +337,6 @@ function getSeriesDataItem(series, index) {
 }
 
 
-
 function getMaxTextListLength(list) {
     var lengthList = list.map(function (item) {
         return measureText(item);
@@ -382,7 +381,7 @@ function getToolTipData(seriesData, calPoints, index, categories) {
     });
 
     offset.y /= validCalPoints.length;
-    return { textList: textList, offset: offset };
+    return {textList: textList, offset: offset};
 }
 
 function findCurrentIndex(currentPoints, xAxisPoints, opts, config) {
@@ -644,7 +643,7 @@ function getXAxisPoints(categories, opts, config) {
         xAxisPoints.push(endX);
     }
 
-    return { xAxisPoints: xAxisPoints, startX: startX, endX: endX, eachSpacing: eachSpacing };
+    return {xAxisPoints: xAxisPoints, startX: startX, endX: endX, eachSpacing: eachSpacing};
 }
 
 function getDataPoints(data, minRange, maxRange, xAxisPoints, eachSpacing, opts, config) {
@@ -717,7 +716,7 @@ function calYAxisData(series, opts, config) {
         yAxisWidth = 0;
     }
 
-    return { rangesFormat: rangesFormat, ranges: ranges, yAxisWidth: yAxisWidth };
+    return {rangesFormat: rangesFormat, ranges: ranges, yAxisWidth: yAxisWidth};
 }
 
 function drawPointShape(points, color, shape, context) {
@@ -856,7 +855,7 @@ function drawPieText(series, opts, config, context, radius, center) {
         var arc = 2 * Math.PI - (item._start_ + 2 * Math.PI * item._proportion_ / 2);
         var text = item.format ? item.format(+item._proportion_.toFixed(2)) : util.toFixed(item._proportion_ * 100) + '%';
         var color = item.color;
-        return { arc: arc, text: text, color: color };
+        return {arc: arc, text: text, color: color};
     });
     seriesConvert.forEach(function (item) {
         // line end
@@ -874,7 +873,7 @@ function drawPieText(series, opts, config, context, radius, center) {
         var textWidth = measureText(item.text);
         var startY = orginY3;
 
-        if (lastTextObject && util.isSameXCoordinateArea(lastTextObject.start, { x: orginX3 })) {
+        if (lastTextObject && util.isSameXCoordinateArea(lastTextObject.start, {x: orginX3})) {
             if (orginX3 > 0) {
                 startY = Math.min(orginY3, lastTextObject.start.y);
             } else if (orginX1 < 0) {
@@ -1503,6 +1502,7 @@ function drawLegend(series, opts, config, context) {
         });
     });
 }
+
 function drawPieDataPoints(series, opts, config, context) {
     var process = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 1;
 
@@ -1884,30 +1884,30 @@ function drawCharts(type, opts, config, context) {
 // simple event implement
 
 function Event() {
-	this.events = {};
+    this.events = {};
 }
 
 Event.prototype.addEventListener = function (type, listener) {
-	this.events[type] = this.events[type] || [];
-	this.events[type].push(listener);
+    this.events[type] = this.events[type] || [];
+    this.events[type].push(listener);
 };
 
 Event.prototype.trigger = function () {
-	for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-		args[_key] = arguments[_key];
-	}
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+    }
 
-	var type = args[0];
-	var params = args.slice(1);
-	if (!!this.events[type]) {
-		this.events[type].forEach(function (listener) {
-			try {
-				listener.apply(null, params);
-			} catch (e) {
-				console.error(e);
-			}
-		});
-	}
+    var type = args[0];
+    var params = args.slice(1);
+    if (!!this.events[type]) {
+        this.events[type].forEach(function (listener) {
+            try {
+                listener.apply(null, params);
+            } catch (e) {
+                console.error(e);
+            }
+        });
+    }
 };
 
 var Charts = function Charts(opts) {
@@ -1967,11 +1967,14 @@ Charts.prototype.getCurrentDataIndex = function (e) {
             y = _touches$.y;
 
         if (this.opts.type === 'pie' || this.opts.type === 'ring') {
-            return findPieChartCurrentIndex({ x: x, y: y }, this.chartData.pieData);
+            return findPieChartCurrentIndex({x: x, y: y}, this.chartData.pieData);
         } else if (this.opts.type === 'radar') {
-            return findRadarChartCurrentIndex({ x: x, y: y }, this.chartData.radarData, this.opts.categories.length);
+            return findRadarChartCurrentIndex({x: x, y: y}, this.chartData.radarData, this.opts.categories.length);
         } else {
-            return findCurrentIndex({ x: x, y: y }, this.chartData.xAxisPoints, this.opts, this.config, Math.abs(this.scrollOption.currentOffset));
+            return findCurrentIndex({
+                x: x,
+                y: y
+            }, this.chartData.xAxisPoints, this.opts, this.config, Math.abs(this.scrollOption.currentOffset));
         }
     }
     return -1;
