@@ -18,8 +18,8 @@
     <view class="bottom-row">
         <view class="info-box">
             <view class="info-item">
-                <text class="iconfont icon-cube-fill"></text>
-                <text class="text_overflow">{{item.productTypeLabel}}-{{wxs.getTypelabel(item)}}</text>
+                <text class="iconfnt icon-cube-fill"></text>
+                <text class="teoxt_overflow">{{item.productTypeLabel}}-{{wxs.getTypelabel(item)}}</text>
             </view>
             <view class="info-item" wx:if="{{isRoom}}">
                 <text class="iconfont icon-building"></text>
